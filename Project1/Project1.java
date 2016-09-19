@@ -1,7 +1,7 @@
 /*
 
 Riya Gharat             n00901846
-Hame Britto
+Hame Britto             n00938821
 Megan Molumby           n00942101
 Mai Nguyen              n01069097
 
