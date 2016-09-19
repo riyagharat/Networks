@@ -1,0 +1,20 @@
+osprey~/networking$ more ClientSocket1.java
+import java.io.*;
+import java.net.*;
+public class ClientSocket1 {
+public static void main(String[] args) {
+try{
+Socket s=new Socket("localhost",59100);
+DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+dout.writeUTF("This is the Menu.... ");
+dout.writeUTF("Choose Netstat.... ");
+dout.writeUTF("Choose Uptime.... ");
+dout.writeUTF("Choose  Date.... ");
+dout.writeUTF("Choose Processes.... ");
+
+dout.flush();
+dout.close();
+s.close();
+}catch(Exception e){System.out.println(e);}
+}
+}
