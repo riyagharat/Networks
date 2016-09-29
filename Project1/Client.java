@@ -31,13 +31,14 @@ public class Client {
       try {
 
         System.out.println("The client started. Type any text. To quit it type 'Ok'.");
+        main();
         String responseLine;
         os.println(inputLine.readLine());
 
          if (responseLine.indexOf("Ok") != -1) 
             break;
 
-
+      
         /*
          * Close the output stream, close the input stream, close the socket.
          */
@@ -50,5 +51,21 @@ public class Client {
         System.err.println("IOException:  " + e);
       }
     }
+  }
+  
+  public static void main() {
+      boolean check = true;
+      while(check){
+         System.out.println("Option a: Host Current Date and Time");
+         System.out.println("Option b: Host Uptime");
+         System.out.println("Option c: Host Memory Use");
+         System.out.println("Option d: Host Netstat");
+         System.out.println("Option e: Host Current Users");
+         System.out.println("Option f: Host Running Processes");
+         System.out.println("Option g: EXIT.");
+         System.out.print("Enter a choice: ");
+         choice = input.next().charAt(0);
+         System.out.println("");
+      }
   }
 }
