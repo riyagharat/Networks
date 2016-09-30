@@ -9,6 +9,10 @@ public class Client {
     DataInputStream is = null;
     PrintStream os = null;
     DataInputStream inputLine = null;
+    boolean check = true;
+    String choice;
+    Scanner input = new Scanner(System.in);
+
 
     /*
      * Open a socket on port 2222 of the server to the virtual machine ciswkstn113
@@ -32,16 +36,49 @@ public class Client {
       try {
 
         System.out.println("The client started. Type any text. To quit it type 'Ok'.");
-        clientMenu();
+        
         String responseLine = "";
-        os.println(inputLine.readLine());
-        while ((responseLine = is.readLine()) != null) {
-         if (responseLine.indexOf("Ok") != -1){ 
+        
+         while(check){
+         System.out.println("Option a: Host Current Date and Time");
+         System.out.println("Option b: Host Uptime");
+         System.out.println("Option c: Host Memory Use");
+         System.out.println("Option d: Host Netstat");
+         System.out.println("Option e: Host Current Users");
+         System.out.println("Option f: Host Running Processes");
+         System.out.println("Option g: EXIT.");
+         System.out.print("Enter a choice: ");
+         choice = input.next();
+         System.out.println("");
+        switch(choice){
+           case "a":
+            os.println("a");
             break;
-         }
-          os.println(inputLine.readLine());
-        }
-      
+            
+     
+           case "b":
+              break;
+             
+           case "c":
+             
+             break;
+           case "d":
+             os.println("d"
+             break;
+           case "e":
+              
+             break;
+           case "f":
+              
+             break; 
+           case "g":
+            System.exit(0);
+             break;
+           default:
+              System.out.print("Invalid entry\n");
+           }
+        } 
+   
         /*
          * Close the output stream, close the input stream, close the socket.
          */
@@ -56,47 +93,4 @@ public class Client {
     }
   }
   
-  public static void clientMenu() {
-      boolean check = true;
-      char choice;
-      Scanner input = new Scanner(System.in);
-      while(check){
-         System.out.println("Option a: Host Current Date and Time");
-         System.out.println("Option b: Host Uptime");
-         System.out.println("Option c: Host Memory Use");
-         System.out.println("Option d: Host Netstat");
-         System.out.println("Option e: Host Current Users");
-         System.out.println("Option f: Host Running Processes");
-         System.out.println("Option g: EXIT.");
-         System.out.print("Enter a choice: ");
-         choice = input.next().charAt(0);
-         System.out.println("");
-        switch(choice){
-           case 'a':
-            
-            
-             break;
-           case 'b':
-              
-             break;
-           case 'c':
-             
-             break;
-           case 'd':
-             
-             break;
-           case 'e':
-              
-             break;
-           case 'f':
-              
-             break; 
-           case 'g':
-            System.exit(0);
-             break;
-           default:
-              System.out.print("Invalid entry\n");
-           }
-        }    
-      }
-   }   
+} 
