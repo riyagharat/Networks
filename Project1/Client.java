@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 public class Client {
   public static void main(String[] args) {
@@ -31,13 +32,15 @@ public class Client {
       try {
 
         System.out.println("The client started. Type any text. To quit it type 'Ok'.");
-        main();
-        String responseLine;
+        clientMenu();
+        String responseLine = "";
         os.println(inputLine.readLine());
-
-         if (responseLine.indexOf("Ok") != -1) 
+        while ((responseLine = is.readLine()) != null) {
+         if (responseLine.indexOf("Ok") != -1){ 
             break;
-
+         }
+          os.println(inputLine.readLine());
+        }
       
         /*
          * Close the output stream, close the input stream, close the socket.
@@ -53,8 +56,10 @@ public class Client {
     }
   }
   
-  public static void main() {
+  public static void clientMenu() {
       boolean check = true;
+      char choice;
+      Scanner input = new Scanner(System.in);
       while(check){
          System.out.println("Option a: Host Current Date and Time");
          System.out.println("Option b: Host Uptime");
@@ -66,6 +71,32 @@ public class Client {
          System.out.print("Enter a choice: ");
          choice = input.next().charAt(0);
          System.out.println("");
+        switch(choice){
+           case 'a':
+            
+            
+             break;
+           case 'b':
+              
+             break;
+           case 'c':
+             
+             break;
+           case 'd':
+             
+             break;
+           case 'e':
+              
+             break;
+           case 'f':
+              
+             break; 
+           case 'g':
+            System.exit(0);
+             break;
+           default:
+              System.out.print("Invalid entry\n");
+           }
+        }    
       }
-  }
-}
+   }   
