@@ -35,3 +35,12 @@ You will be required to provide a demo to the instructor. The client-server appl
 Your code will be expected to deal with invalid user commands. You will turn in binaries and source code of your client and server programs at the time of the demo. 
 
 Plot two graphs of the latency (mean server response time) versus number of clients for the netstat and current date and time commands.  Increase the number of clients as follows: 1, 5, 10, 20, 30, 40, 50, 60, 70, 75. 
+
+
+
+Commands :
+Netstat - NETSTAT	
+Memory Use - top
+Current Users - w
+Running Processes - ps
+Uptime - UPTIME
