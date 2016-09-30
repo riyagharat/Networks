@@ -63,7 +63,7 @@ public class Client {
              
              break;
            case "d":
-             os.println("d"
+             os.println("d");
              break;
            case "e":
               
