@@ -1,3 +1,10 @@
+/*
+Riya Gharat             n00901846
+Hame Britto             n00938821
+Megan Molumby           n00942101
+Mai Nguyen              n01069097
+  */
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -60,19 +67,40 @@ public class Client {
               break;
              
            case "c":
-             
+             os.println("c");
              break;
            case "d":
              os.println("d");
              break;
            case "e":
-              
+             os.println("e"); 
              break;
            case "f":
-              
+             os.println("f"); 
              break; 
            case "g":
             System.exit(0);
+             break;
+           default:
+              System.out.print("Invalid entry\n");
+           }
+        } 
+   
+        /*
+         * Close the output stream, close the input stream, close the socket.
+         */
+        os.close();
+        is.close();
+        clientSocket.close();
+      } catch (UnknownHostException e) {
+        System.err.println("Trying to connect to unknown host: " + e);
+      } catch (IOException e) {
+        System.err.println("IOException:  " + e);
+      }
+    }
+  }
+  
+}
              break;
            default:
               System.out.print("Invalid entry\n");
