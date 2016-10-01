@@ -1,13 +1,7 @@
-/*
-Riya Gharat             n00901846
-Hame Britto             n00938821
-Megan Molumby           n00942101
-Mai Nguyen              n01069097
-  */
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class Server {
  
@@ -19,6 +13,7 @@ public class Server {
     PrintStream os;
     Socket clientSocket = null;
     String netStat;
+  
     
     char choice;
    
@@ -49,26 +44,23 @@ public class Server {
 //while loop looks for user menu choice
       while(true){
          line= is.readLine();
-         String s = "";         
-         
+         String s = "";
                switch(line){
                   case "a":
-                  TimeStamp = new java.util.Date().toString();
-                  String returnTime ="Server responded at" + TimeStamp ;
-                   System.out.println(returnTime);
+                 
+                     SimpleDateFormat timeStamp = new SimpleDateFormat("yyy-MM-dd HH:mm:ss.SSS");
+                     Date now = new Date();
+                     String strDate = timeStamp.format(now);
+                     String returnTime ="Server responded at " + strDate;
+                     
+                     //IF WE PRINT ON SERVER SIDE USE BeLOW:
+                     //System.out.println(returnTime);
+                     os.println(returnTime);
                      os.flush();
-                           break;
+                     break;
+                    
                  case "b":
-                    try{
-                        Process process = Runtime.getRuntime().exec("uptime");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-
+                    
                      break;
                  case "c":
                      try{
@@ -76,45 +68,31 @@ public class Server {
                         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         while ((s = stdInput.readLine()) != null) {
                            System.out.println(s);
+                           os.println(s);
+                          
                         }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
+                      }catch(IOException e){
+                        }
+                        os.flush();
                         break;
                  case "d":
-                     try{
+                       try{
                         Process process = Runtime.getRuntime().exec("netstat");
                         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         while ((s = stdInput.readLine()) != null) {
                            System.out.println(s);
+                           os.println(s);
+                           
                         }  
                      }catch(IOException e){
-                     }       
-                     os.flush();              
-                        break;
+                     }                     
+                        break;               
                  case "e":
-                     try{
-                        Process process = Runtime.getRuntime().exec("who");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
+                    
                         break;
                  case "f":
-                     try{
-                        Process process = Runtime.getRuntime().exec("ps -u");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        System.out.println(stdInput.readLine());
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-                     break; 
+                    
+                        break; 
                  case "g":
       
                }
