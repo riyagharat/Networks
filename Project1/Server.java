@@ -53,6 +53,7 @@ public class Server {
                   String strDate = timeStamp.format(now);
                   String returnTime ="Server responded at" + strDate;
                    System.out.println(returnTime);
+                 os.println(returnTime);
                      os.flush();
                            break;
                  case "b":
@@ -68,7 +69,7 @@ public class Server {
                     // byte[] command1array = command1array.getBytes();
     
                      
-                     System.out.println(command1array);
+                    // System.out.println(command1array);
                      
                      //this still does not work
                      
