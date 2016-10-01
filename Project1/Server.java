@@ -71,6 +71,7 @@ public class Server {
                         }  
                      }catch(IOException e){
                      }
+                     os.flush();
                         break;
                  case "d":
                      try{
@@ -80,7 +81,8 @@ public class Server {
                            System.out.println(s);
                         }  
                      }catch(IOException e){
-                     }                     
+                     }       
+                     os.flush();              
                         break;
                  case "e":
                      try{
@@ -91,16 +93,19 @@ public class Server {
                         }  
                      }catch(IOException e){
                      }
+                     os.flush();
                         break;
                  case "f":
                      try{
-                        Process process = Runtime.getRuntime().exec("ps");
+                        Process process = Runtime.getRuntime().exec("ps -u");
                         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        System.out.println(stdInput.readLine());
                         while ((s = stdInput.readLine()) != null) {
                            System.out.println(s);
                         }  
                      }catch(IOException e){
                      }
+                     os.flush();
                      break; 
                  case "g":
       
