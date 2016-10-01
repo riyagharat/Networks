@@ -9,7 +9,6 @@ Mai Nguyen              n01069097
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.text.SimpleDateFormat;
 
 public class Server {
  
@@ -21,7 +20,6 @@ public class Server {
     PrintStream os;
     Socket clientSocket = null;
     String netStat;
-    //SimpleDateFormat timeStamp;
     
     char choice;
    
@@ -52,54 +50,58 @@ public class Server {
 //while loop looks for user menu choice
       while(true){
          line= is.readLine();
-         String s = "";
+         String s = "";         
+         
                switch(line){
                   case "a":
-                  //TimeStamp = new java.util.Date().toString();
-                  SimpleDateFormat timeStamp = new SimpleDateFormat("yyy-MM-dd HH:mm:ss.SSS");
-                  Date now = new Date();
-                  String strDate = timeStamp.format(now);
-                  String returnTime ="Server responded at" + strDate;
+                  TimeStamp = new java.util.Date().toString();
+                  String returnTime ="Server responded at" + TimeStamp ;
                    System.out.println(returnTime);
-                 os.println(returnTime);
                      os.flush();
                            break;
                  case "b":
                     
                      break;
                  case "c":
-                     Process p = Runtime.getRuntime().exec("free");                                                                                                                                                     
-                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                     while ((s = stdInput.readLine()) != null) {
-                        System.out.println(s);
+                     try{
+                        Process process = Runtime.getRuntime().exec("free");
+                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while ((s = stdInput.readLine()) != null) {
+                           System.out.println(s);
+                        }  
+                     }catch(IOException e){
                      }
-                   
                         break;
                  case "d":
-                     Process p = Runtime.getRuntime().exec("netstat");                                                                                                                                                     
-                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                     while ((s = stdInput.readLine()) != null) {
-                        System.out.println(s);
-                     }
-                     
-                    // byte[] command1array = command1array.getBytes();
-    
-                     
-                    // System.out.println(command1array);
-                     
-                     //this still does not work
-                     
+                     try{
+                        Process process = Runtime.getRuntime().exec("netstat");
+                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while ((s = stdInput.readLine()) != null) {
+                           System.out.println(s);
+                        }  
+                     }catch(IOException e){
+                     }                     
                         break;
                  case "e":
-                    Process p = Runtime.getRuntime().exec("who");                                                                                                                                                     
-                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                     while ((s = stdInput.readLine()) != null) {
-                        System.out.println(s);
+                     try{
+                        Process process = Runtime.getRuntime().exec("who");
+                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while ((s = stdInput.readLine()) != null) {
+                           System.out.println(s);
+                        }  
+                     }catch(IOException e){
                      }
                         break;
                  case "f":
-                    
-                        break; 
+                     try{
+                        Process process = Runtime.getRuntime().exec("ps");
+                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while ((s = stdInput.readLine()) != null) {
+                           System.out.println(s);
+                        }  
+                     }catch(IOException e){
+                     }
+                     break; 
                  case "g":
       
                }
