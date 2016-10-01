@@ -1,0 +1,14 @@
+public static long timeStart() {
+   long timeStart = System.currentTimeMillis();
+   return timeStart;
+}
+
+public static long timeStop() {
+   long timeStop = System.currentTimeMillis();
+   return timeStop;
+}
+
+public static long elapsedTime(long s, long t) {
+   long elapsedTime = t - s;
+   return elapsedTime;
+}
