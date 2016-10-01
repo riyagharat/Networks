@@ -1,0 +1,267 @@
+import java.io.*;
+
+import java.net.*;
+
+import java.util.Scanner;
+
+public class MyClient5 {
+
+public static void main(String[] args) {
+
+ 
+
+ 
+
+{
+
+    if(args[0] == null)
+
+    {
+
+        System.out.println("Proper Usage is: please enter the server dns name...");
+
+        System.exit(0);
+
+    }
+
+}
+
+ 
+
+ 
+
+String s1 = args[0];
+
+//declare a scanner for user Input
+
+Scanner userInput = new Scanner(System.in);
+
+int choice;
+
+int value1, value2;
+
+boolean quit = false;
+
+ 
+
+try{
+
+Socket s=new Socket(s1,59100);
+
+DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+
+System.out.println("message=1 ");
+
+DataInputStream dis=new DataInputStream(s.getInputStream());
+
+do
+
+{
+
+//display our menu
+
+System.out.println("*** Choose your options as given below***");
+
+System.out.println("1, Current Date and Time");
+
+System.out.println("2, Uptime");
+
+System.out.println("3, Memory Use");
+
+System.out.println("4, Netstat");
+
+System.out.println("5, Current Users");
+
+System.out.println("6, Running Processes");
+
+ 
+
+System.out.println("7. Exit");
+
+System.out.println("**********************");
+
+System.out.println("Please enter your choice:");
+
+ 
+
+//get user input
+
+choice = userInput.nextInt();
+
+ 
+
+//switch the choice from user
+
+switch(choice)
+
+{
+
+ 
+
+case 1://time
+
+System.out.println("Current Date and Time");
+
+dout.writeUTF("date");
+
+System.out.println("Sent the command date from the client");
+
+String  str1=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str1);
+
+break;
+
+ 
+
+case 2://Uptime
+
+System.out.println("uptime");
+
+dout.writeUTF("uptime");
+
+System.out.println("Sent the command uptime from the client");
+
+String  str2=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str2);
+
+break;
+
+ 
+
+ 
+
+case 3://Memory
+
+System.out.println("Memory Usage");
+
+dout.writeUTF("vmstat");
+
+System.out.println("Sent the command memory usage from the client");
+
+String  str3=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str3);
+
+break;
+
+ 
+
+ 
+
+case 5://Current Users
+
+System.out.println("Current Users");
+
+dout.writeUTF("who");
+
+System.out.println("Sent the command Current Users from the client");
+
+String  str5=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str5);
+
+break;
+
+ 
+
+ 
+
+ 
+
+case 4://Netstat
+
+System.out.println("netstat");
+
+dout.writeUTF("netstat");
+
+System.out.println("Sent the command netstat from the client");
+
+String  str4=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str4);
+
+break;
+
+ 
+
+ 
+
+ 
+
+case 6://Processes
+
+System.out.println("Processes");
+
+dout.writeUTF("ps -ef|grep tcp");
+
+System.out.println("Sent the command process processes from the client");
+
+String  str6=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str6);
+
+break;
+
+ 
+
+ 
+
+case 7://exit
+
+System.out.println("You have chose exit!");
+
+quit = true;
+
+dout.writeUTF("exit");
+
+System.out.println("Sent the command  to disconnect from the client");
+
+String  str7=(String)dis.readUTF();
+
+System.out.println("The response from the Server is --> "+ str7);
+
+ 
+
+break;
+
+default://default
+
+System.out.println("You entered an invalid choice");
+
+break;
+
+}
+
+}while(!quit);
+
+try{
+
+ 
+
+System.out.println("message=2 ");
+
+ 
+
+dout.flush();
+
+dout.close();
+
+ 
+
+dis.close();
+
+System.out.println("message=6 ");
+
+}catch(Exception e){System.out.println(e);}
+
+ 
+
+System.out.println("message=7 ");
+
+}catch(Exception e){System.out.println(e);}
+
+}
+
+}
