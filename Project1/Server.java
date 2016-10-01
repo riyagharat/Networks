@@ -44,7 +44,7 @@ public class Server {
 //while loop looks for user menu choice
       while(true){
          line= is.readLine();
-         
+         String s = "";
                switch(line){
                   case "a":
                   //TimeStamp = new java.util.Date().toString();
@@ -60,6 +60,11 @@ public class Server {
                     
                      break;
                  case "c":
+                     Process p = Runtime.getRuntime().exec("free");                                                                                                                                                     
+                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                     while ((s = stdInput.readLine()) != null) {
+                        System.out.println(s);
+                     }
                    
                         break;
                  case "d":
