@@ -91,7 +91,11 @@ public class Server {
                      
                         break;
                  case "e":
-                    
+                    Process p = Runtime.getRuntime().exec("who");                                                                                                                                                     
+                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                     while ((s = stdInput.readLine()) != null) {
+                        System.out.println(s);
+                     }
                         break;
                  case "f":
                     
