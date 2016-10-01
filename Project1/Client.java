@@ -1,10 +1,3 @@
-/*
-Riya Gharat             n00901846
-Hame Britto             n00938821
-Megan Molumby           n00942101
-Mai Nguyen              n01069097
-  */
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -19,7 +12,7 @@ public class Client {
     boolean check = true;
     String choice;
     Scanner input = new Scanner(System.in);
-
+    String line;
 
     /*
      * Open a socket on port 2222 of the server to the virtual machine ciswkstn113
@@ -45,6 +38,7 @@ public class Client {
         System.out.println("The client started. Type any text. To quit it type 'Ok'.");
         
         String responseLine = "";
+        String s = "";
         
          while(check){
          System.out.println("Option a: Host Current Date and Time");
@@ -60,21 +54,51 @@ public class Client {
         switch(choice){
            case "a":
             os.println("a");
+            
+            System.out.println(is.readLine());
             break;
+            
+     
            case "b":
-              os.println("b");
-              break;        
+              break;
+             
            case "c":
              os.println("c");
-             break;
+             try{
+                      BufferedReader stdInput = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                      while ((s = stdInput.readLine()) != null) {
+                               System.out.println(s);
+                                    
+            
+                      }  
+                
+                      //System.out.println(is.readLine());
+                 }catch(IOException e){
+                 }
+              break;
+                        
            case "d":
              os.println("d");
-             break;
+             try{
+                      BufferedReader stdInput = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                      while ((s = stdInput.readLine()) != null) {
+                                    System.out.println(s);
+                                    os.println(s);
+                                    
+                      }  
+                      
+                        os.flush();
+                        break;
+                      //System.out.println(is.readLine());
+                 }catch(IOException e){
+                 }
+          
+                          
            case "e":
-             os.println("e"); 
+              
              break;
            case "f":
-             os.println("f"); 
+              
              break; 
            case "g":
             System.exit(0);
@@ -98,4 +122,4 @@ public class Client {
     }
   }
   
-}
+} 
