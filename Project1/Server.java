@@ -1,4 +1,3 @@
-
 /*
 Riya Gharat             n00901846
 Hame Britto             n00938821
@@ -60,7 +59,16 @@ public class Server {
                      os.flush();
                            break;
                  case "b":
-                    
+                    try{
+                        Process process = Runtime.getRuntime().exec("uptime");
+                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while ((s = stdInput.readLine()) != null) {
+                           System.out.println(s);
+                        }  
+                     }catch(IOException e){
+                     }
+                     os.flush();
+
                      break;
                  case "c":
                      try{
