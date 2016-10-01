@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class Server {
  
@@ -12,6 +13,7 @@ public class Server {
     PrintStream os;
     Socket clientSocket = null;
     String netStat;
+    //SimpleDateFormat timeStamp;
     
     char choice;
    
@@ -45,8 +47,11 @@ public class Server {
          
                switch(line){
                   case "a":
-                  TimeStamp = new java.util.Date().toString();
-                  String returnTime ="Server responded at" + TimeStamp ;
+                  //TimeStamp = new java.util.Date().toString();
+                  SimpleDateFormat timeStamp = new SimpleDateFormat("yyy-MM-dd HH:mm:ss.SSS");
+                  Date now = new Date();
+                  String strDate = timeStamp.format(now);
+                  String returnTime ="Server responded at" + strDate;
                    System.out.println(returnTime);
                      os.flush();
                            break;
@@ -57,8 +62,13 @@ public class Server {
                    
                         break;
                  case "d":
+                 
                      Process process = Runtime.getRuntime().exec("netstat");
-                     System.out.println(process);
+                     
+                    // byte[] command1array = command1array.getBytes();
+    
+                     
+                     System.out.println(command1array);
                      
                      //this still does not work
                      
