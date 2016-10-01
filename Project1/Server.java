@@ -1,3 +1,11 @@
+
+/*
+Riya Gharat             n00901846
+Hame Britto             n00938821
+Megan Molumby           n00942101
+Mai Nguyen              n01069097
+  */
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -68,8 +76,11 @@ public class Server {
                    
                         break;
                  case "d":
-                 
-                     Process process = Runtime.getRuntime().exec("netstat");
+                     Process p = Runtime.getRuntime().exec("netstat");                                                                                                                                                     
+                     BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                     while ((s = stdInput.readLine()) != null) {
+                        System.out.println(s);
+                     }
                      
                     // byte[] command1array = command1array.getBytes();
     
