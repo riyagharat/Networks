@@ -1,0 +1,137 @@
+import java.io.*;
+
+import java.net.*;
+
+public class MyServer5 {
+
+public static void main(String[] args){
+
+ 
+
+ 
+
+try{
+
+ 
+
+boolean quit = false;
+
+MyServer5 mysrv1 = new MyServer5();
+
+String command1 = "uptime";
+
+ 
+
+String output1 = mysrv1.executeCommand(command1);
+
+System.out.println(output1);
+
+ 
+
+ServerSocket ss=new ServerSocket(59100);
+
+Socket s=ss.accept();//establishes connection
+
+ 
+
+DataInputStream dis=new DataInputStream(s.getInputStream());
+
+DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+
+do
+
+{
+
+String  str=(String)dis.readUTF();
+
+ 
+
+if (str == "exit"){ quit = true;}
+
+else {
+
+String output2 = mysrv1.executeCommand(str);
+
+ 
+
+dout.writeUTF(output2);
+
+     }
+
+System.out.println("sent the output for ..." + str + " : ");
+
+ 
+
+}while(!quit);
+
+dout.flush();
+
+dout.close();
+
+ 
+
+ 
+
+ 
+
+ss.close();
+
+}catch(Exception e){System.out.println(e);}
+
+}
+
+ 
+
+ 
+
+ 
+
+ 
+
+private String executeCommand(String command) {
+
+ 
+
+                StringBuffer output = new StringBuffer();
+
+ 
+
+                Process p;
+
+                try {
+
+                        p = Runtime.getRuntime().exec(command);
+
+                        p.waitFor();
+
+                        BufferedReader reader =
+
+                            new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+ 
+
+                        String line = "";
+
+                        while ((line = reader.readLine())!= null) {
+
+                                output.append(line + "\n");
+
+                        }
+
+ 
+
+                } catch (Exception e) {
+
+                        e.printStackTrace();
+
+                }
+
+ 
+
+                return output.toString();
+
+ 
+
+        }
+
+}
