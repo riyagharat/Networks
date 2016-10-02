@@ -14,3 +14,14 @@ public class Threads implements Runnable{
     
    }
 }
+
+final int MAXCLIENTS = 5;
+      
+      for(int i = 0; i < MAXCLIENTS; i++){
+         ClientThread t = new ClientThread();
+         Thread thread = new Thread(t);
+         for(int j = 0; j < MAXCLIENTS; j++){
+            thread.start();
+            run();
+         }
+      }
