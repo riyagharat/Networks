@@ -9,35 +9,92 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Client {
-  public static void main(String[] args) {
-   final int MAXCLIENTS = 5;
-   
-   for(int i = 0; i < MAXCLIENTS; i++){
-      
-   }
+public class Client extends Thread{
+  public static String variable = "";
   
-   run();
-   }
-   
-   public static void run(){
-    Socket clientSocket = null;
-    DataInputStream is = null;
-    PrintStream os = null;
-    DataInputStream inputLine = null;
-    boolean check = true;
-    String choice;
-    Scanner input = new Scanner(System.in);
+  public static void main(String[] args) {
+      while(true){
+         variable = menu();
+         System.out.println(variable);
+         createThreads();
+      }
+  }
+  
+  public static void createThreads(){
+      for(int i = 0; i < 5; i++){
+            new Thread(new ClientThread("Thread" + i)).start();
+         }
+  }
+  
+  public static String menu(){
+      boolean check = true;
+      String choice;
+      Scanner input = new Scanner(System.in);
 
+      while(check){
+            System.out.println("Option a: Host Current Date and Time");
+            System.out.println("Option b: Host Uptime");
+            System.out.println("Option c: Host Memory Use");
+            System.out.println("Option d: Host Netstat"); 
+            System.out.println("Option e: Host Current Users");
+            System.out.println("Option f: Host Running Processes");
+            System.out.println("Option g: EXIT.");
+            System.out.print("Enter a choice: ");
+            choice = input.next();
+            System.out.println("");
+           switch(choice){
+              case "a":
+                  return "a";
+              case "b":
+                 return "b";      
+              case "c":
+                return "c";
+              case "d":
+                return "d";
+              case "e":
+                return "e"; 
+              case "f":
+                return "f"; 
+              case "g":
+               System.exit(0);
+                break;
+              default:
+                 System.out.print("Invalid entry\n");
+              }
+           } 
+      return "END";
+  }
+  
+} 
+
+class ClientThread implements Runnable{
+   String threadName;
+
+   public ClientThread(String name){
+      threadName = name;
+   }   
+   
+   public void run(){
+   
+      System.out.println("Process started for" + threadName);
+      Socket clientSocket = null;
+      DataOutputStream os = null;
+      DataInputStream is = null;
+      DataInputStream inputLine = null;
 
     /*
      * Open a socket on port 2222 of the server to the virtual machine ciswkstn113
      */
     try {
       clientSocket = new Socket("192.168.100.113", 2222);
-      os = new PrintStream(clientSocket.getOutputStream());
-      is = new DataInputStream(clientSocket.getInputStream());
-      inputLine = new DataInputStream(new BufferedInputStream(System.in));
+      os = new DataOutputStream(clientSocket.getOutputStream());
+      os.writeUTF(Client.variable + "Client input");
+      InputStream fromServer = clientSocket.getInputStream();
+      is = new DataInputStream(fromServer);
+      
+      System.out.println("Server says: " + is.readUTF());
+      System.out.println("Closing Socket");
+      
     } catch (UnknownHostException e) {
       System.err.println("Don't know about host");
     } catch (IOException e) {
@@ -57,44 +114,7 @@ public class Client {
            
            String responseLine = ""; 
            
-            while(check){
-            System.out.println("Option a: Host Current Date and Time");
-            System.out.println("Option b: Host Uptime");
-            System.out.println("Option c: Host Memory Use");
-            System.out.println("Option d: Host Netstat");
-            System.out.println("Option e: Host Current Users");
-            System.out.println("Option f: Host Running Processes");
-            System.out.println("Option g: EXIT.");
-            System.out.print("Enter a choice: ");
-            choice = input.next();
-            System.out.println("");
-           switch(choice){
-              case "a":
-               os.println("a");
-               break;
-              case "b":
-                 os.println("b");
-                 break;        
-              case "c":
-                os.println("c");
-                break;
-              case "d":
-                os.println("d");
-                break;
-              case "e":
-                os.println("e"); 
-                break;
-              case "f":
-                os.println("f"); 
-                break; 
-              case "g":
-               System.exit(0);
-                break;
-              default:
-                 System.out.print("Invalid entry\n");
-              }
-           } 
-      
+                 
            /*
             * Close the output stream, close the input stream, close the socket.
             */
@@ -109,18 +129,4 @@ public class Client {
        }
 }
 
-public static long timeStart() {
-   long timeStart = System.currentTimeMillis();
-   return timeStart;
-}
-
-public static long timeStop() {
-   long timeStop = System.currentTimeMillis();
-   return timeStop;
-}
-
-public static long elapsedTime(long s, long t) {
-   long elapsedTime = t - s;
-   return elapsedTime;
-}
 }
