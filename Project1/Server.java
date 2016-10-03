@@ -74,6 +74,7 @@ public class Server {
                       }catch(IOException e){
                         }
                         os.flush();
+                        stdInput.close();
                         break;
                  case "d":
                        try{
