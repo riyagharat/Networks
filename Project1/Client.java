@@ -23,7 +23,7 @@ public class Client extends Thread{
   public static void createThreads(){
       for(int i = 0; i < 5; i++){
             new Thread(new ClientThread("Thread" + i)).start();
-         }
+      }
   }
   
   public static String menu(){
@@ -78,7 +78,7 @@ class ClientThread implements Runnable{
    
       System.out.println("Process started for" + threadName);
       Socket clientSocket = null;
-      DataOutputStream os = null;
+      PrintStream os = null;
       DataInputStream is = null;
       DataInputStream inputLine = null;
 
@@ -87,12 +87,11 @@ class ClientThread implements Runnable{
      */
     try {
       clientSocket = new Socket("192.168.100.113", 2222);
-      os = new DataOutputStream(clientSocket.getOutputStream());
-      os.writeUTF(Client.variable + "Client input");
-      InputStream fromServer = clientSocket.getInputStream();
-      is = new DataInputStream(fromServer);
-      
-      System.out.println("Server says: " + is.readUTF());
+      os = new PrintStream(clientSocket.getOutputStream());
+      is = new DataInputStream(clientSocket.getInputStream());
+      inputLine = new DataInputStream(new BufferedInputStream(System.in));
+            
+ //     System.out.println("Server says: " + is.readLine());
       System.out.println("Closing Socket");
       
     } catch (UnknownHostException e) {
@@ -112,8 +111,9 @@ class ClientThread implements Runnable{
    
            System.out.println("The client started. Type any text. To quit it type 'Ok'.");
            
-           String responseLine = ""; 
+           String responseLine = Client.variable; 
            
+           os.println(Client.variable);
                  
            /*
             * Close the output stream, close the input stream, close the socket.
