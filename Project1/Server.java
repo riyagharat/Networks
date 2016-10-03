@@ -39,7 +39,7 @@ public class Server {
      */
     System.out.println("The server started. To stop it press <CTRL><C>.");
     
-        try {
+    try {
       clientSocket = echoServer.accept();
       
       is = new DataInputStream(clientSocket.getInputStream());
@@ -48,14 +48,15 @@ public class Server {
       
 //while loop looks for user menu choice
       while(true){
-         line= is.readLine();
+         line = is.readLine();
+         System.out.println("Hello: " + line);
          String s = "";         
          
                switch(line){
                   case "a":
-                  TimeStamp = new java.util.Date().toString();
-                  String returnTime ="Server responded at" + TimeStamp ;
-                   System.out.println(returnTime);
+                     TimeStamp = new java.util.Date().toString();
+                     String returnTime ="Server responded at" + TimeStamp ;
+                     System.out.println(returnTime);
                      os.flush();
                            break;
                  case "b":
