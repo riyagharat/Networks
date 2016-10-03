@@ -71,10 +71,11 @@ public class Server {
                            os.println(s);
                           
                         }  
-                      }catch(IOException e){
-                        }
                         os.flush();
                         stdInput.close();
+                      }catch(IOException e){
+                        }
+                        
                         break;
                  case "d":
                        try{
