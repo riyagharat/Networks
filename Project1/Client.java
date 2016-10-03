@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+//192.168.100.112                ciswkstn112
+//192.168.100.113                ciswkstn113
 
 public class Client {
   public static void main(String[] args) {
