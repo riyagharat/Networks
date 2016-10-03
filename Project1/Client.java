@@ -90,9 +90,6 @@ class ClientThread implements Runnable{
       os = new PrintStream(clientSocket.getOutputStream());
       is = new DataInputStream(clientSocket.getInputStream());
       inputLine = new DataInputStream(new BufferedInputStream(System.in));
-            
- //     System.out.println("Server says: " + is.readLine());
-      System.out.println("Closing Socket");
       
     } catch (UnknownHostException e) {
       System.err.println("Don't know about host");
@@ -112,6 +109,7 @@ class ClientThread implements Runnable{
            System.out.println("The client started. Type any text. To quit it type 'Ok'.");
            
            String responseLine = Client.variable; 
+           System.out.println(Client.variable);
            
            os.println(Client.variable);
                  
@@ -127,6 +125,8 @@ class ClientThread implements Runnable{
            System.err.println("IOException:  " + e);
          }
        }
+       
+    System.out.println("Closing Socket.");
 }
 
 }
