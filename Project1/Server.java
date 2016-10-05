@@ -12,7 +12,6 @@ import java.util.*;
 public class Server {
  
   public static void main(String args[]) {
-    String TimeStamp;
     ServerSocket echoServer = null;
     String line;
     DataInputStream is;
@@ -55,10 +54,13 @@ public class Server {
          String s = "";         
          switch(line){
             case "a":
-               TimeStamp = new java.util.Date().toString();
-               String returnTime ="Server responded at " + TimeStamp ;
-               System.out.println(returnTime);
-               os.flush();
+                  //dateTime();
+                  
+                  String TimeStamp;
+                  TimeStamp = new java.util.Date().toString();
+                  String returnTime ="Server responded at " + TimeStamp ;
+                  System.out.println(returnTime);
+                  os.flush();
                break;
            case "b":
               try{
@@ -130,5 +132,27 @@ public class Server {
     } catch (IOException e) {
       System.out.println(e);
     }
+  }
+    
+  public static void dateTime(){
+   String TimeStamp;
+   TimeStamp = new java.util.Date().toString();
+   String returnTime ="Server responded at " + TimeStamp ;
+   System.out.println(returnTime);
+ //  os.flush();
+  }
+  
+  public static void uptime(){
+  String s = "";
+   try{
+      Process process = Runtime.getRuntime().exec("uptime");
+      BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      while ((s = stdInput.readLine()) != null) {
+         System.out.println(s);
+      }  
+   }catch(IOException e){
+               }
+   //            os.flush();
+   
   }
 }
