@@ -9,20 +9,14 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Client extends Thread{
+public class Client{
   public static String variable = "";
   
   public static void main(String[] args) {
       while(true){
          variable = menu();
          System.out.println(variable);
-         createThreads();
-      }
-  }
-  
-  public static void createThreads(){
-      for(int i = 0; i < 5; i++){
-            new Thread(new ClientThread("Thread" + i)).start();
+         clientExecution(variable);
       }
   }
   
@@ -65,18 +59,7 @@ public class Client extends Thread{
       return "END";
   }
   
-} 
-
-class ClientThread implements Runnable{
-   String threadName;
-
-   public ClientThread(String name){
-      threadName = name;
-   }   
-   
-   public void run(){
-   
-      System.out.println("Process started for" + threadName);
+  public static void clientExecution(String variable){
       Socket clientSocket = null;
       PrintStream os = null;
       DataInputStream is = null;
@@ -127,6 +110,7 @@ class ClientThread implements Runnable{
        }
        
     System.out.println("Closing Socket.");
-}
 
-}
+  }
+  
+} 
