@@ -9,7 +9,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Server {
+public class MultiServer {
  
   public static void main(String args[]) {
     String TimeStamp;
@@ -58,29 +58,7 @@ public class Server {
                    System.out.println(returnTime);
                      os.flush();
                            break;
-                 case "b":
-                    try{
-                        Process process = Runtime.getRuntime().exec("uptime");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-
-                     break;
-                 case "c":
-                     try{
-                        Process process = Runtime.getRuntime().exec("free");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-                        break;
+                 
                  case "d":
                      try{
                         Process process = Runtime.getRuntime().exec("netstat");
@@ -92,29 +70,6 @@ public class Server {
                      }       
                      os.flush();              
                         break;
-                 case "e":
-                     try{
-                        Process process = Runtime.getRuntime().exec("who");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-                        break;
-                 case "f":
-                     try{
-                        Process process = Runtime.getRuntime().exec("ps -u");
-                        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        System.out.println(stdInput.readLine());
-                        while ((s = stdInput.readLine()) != null) {
-                           System.out.println(s);
-                        }  
-                     }catch(IOException e){
-                     }
-                     os.flush();
-                     break; 
                  case "g":
       
                }
