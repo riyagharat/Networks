@@ -148,17 +148,12 @@ class Server
 					break;
          	
             case 7:
-              // try
-               //{
+            
                   connectionSocket.close();
                   welcomeSocket.close();
                   inputStream.close();
                   outputStream.close();
-              // }
-              // catch(Exception x)
-              // {
-                 	 
-               //}
+
 
                exitFlag = true;
                break;
