@@ -10,7 +10,7 @@
    Client:192.168.100.112   ciswkstn112
    Host: 192.168.100.113    ciswkstn113
 */
-//NOTE: REMOVE TRY-CATCH IN LINE 150 I DONT THINK ITS NECES,
+
 
 
 import java.io.*;
