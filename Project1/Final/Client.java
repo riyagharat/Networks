@@ -63,7 +63,10 @@ class Client
                System.out.println("Enter Number of Threads");
                //Get number of threads
                num = numberOfThreads.nextInt();
-            }else{
+            }else if(choice.equals("7")){
+               System.out.println("Program is exiting");
+            }
+            else{
                System.out.println("Invalid Input");
             }
             
@@ -114,6 +117,7 @@ class Client
             }else if(choice.equals("7")) {
             
                outputStream.println(choice);
+               System.exit(0);
                break;
             }
             else{
