@@ -6,7 +6,7 @@
       Hame Britto             n00938821
       Megan Molumby           n00942101
       Mai Nguyen              n01069097
-   Project: 1
+   Project: 2
    Client:192.168.100.112   ciswkstn112
    Host: 192.168.100.113    ciswkstn113
 */
@@ -77,37 +77,24 @@ class Client
    	            	ClientThreads thread[] = new ClientThreads[75];
    	            	
    	   				for(int i = 0; i < num; i++) {
-   	   				
-   	   					// Creates a new thread
+     	   					// Creates a new thread
    	   					thread[i] = new ClientThreads(outputStream, inputStream, choice, time);
-   	   					thread[i].start();                   
-   	   					
+   	   					thread[i].start();                   	
    	   				}
    	   				
-   	   				for(int i = 0; i < num; i++)
-   	   				{
-   	   					
-   	   					try	{
-                        
-   	   						thread[i].join();
-                           
+   	   				for(int i = 0; i < num; i++){   					
+   	   					try{                       
+   	   						thread[i].join();                         
    	   					} catch(InterruptedException e) {
-                        
-   	   						System.out.println(e);
-   	   					}
-                        
-   	                  counter = i + 1;
-                        
+       	   						System.out.println(e);
+   	   					} 
+   	                  counter = i + 1;                
    	                  if(num == 1){
-                        
-   	                     System.out.println(thread[i].getResults());
+     	                     System.out.println(thread[i].getResults());
    	                  }
    	   					if ( (counter % 5 == 0) || (counter == 1) ) {
-                        
-   	   						avgTime = time.getAverage(counter);
-                           
-                           if (check){
-                           
+   	   						avgTime = time.getAverage(counter); 
+                           if (check){   
                               System.out.println(OUTPUT);
                               check = false;
                            }
@@ -124,6 +111,8 @@ class Client
                System.out.println("Invalid Input");
             }
          }
+         outputStream.close();
+         inputStream.close();
          
          clientSocket.close();
       }
