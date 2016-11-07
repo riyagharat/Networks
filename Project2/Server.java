@@ -6,7 +6,7 @@
       Hame Britto             n00938821
       Megan Molumby           n00942101
       Mai Nguyen              n01069097
-   Project: 1
+   Project: 2
    Client:192.168.100.112   ciswkstn112
    Host: 192.168.100.113    ciswkstn113
 */
@@ -31,27 +31,62 @@ class Server
       
       //Declare Variables
       int choice = 0;
-      Process process;
-      Runtime run;
-      BufferedReader br;
       String clientInput;
-      String command;
-      String line;
-      String tempLine = null;
       boolean exitFlag = false;
-      
-      PrintWriter outputStream = new PrintWriter(connectionSocket.getOutputStream(), true);      
+           
       BufferedReader inputStream = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
       
-      while(!exitFlag)
-      {  //Takes in client's choice and parses
+      while(!exitFlag){
+      
          clientInput = inputStream.readLine();
          choice = Integer.parseInt(clientInput);
          System.out.println(choice);
-         
-         
-         //Menu
          switch(choice){
+            case 7:
+               try{
+                  connectionSocket.close();
+                  welcomeSocket.close();
+                  inputStream.close();
+               }catch(Exception ex){
+               
+               }
+               
+               exitFlag = true;
+               break;
+               
+            default:    
+            
+                 MyThread thread = new MyThread(connectionSocket, choice);
+                 thread.start();
+                 
+                 break;
+         }        
+      }
+   }  
+}       
+
+class MyThread extends Thread{
+   
+   Socket connectionSocket;
+   int choice;
+   Process process;
+   Runtime run;
+   BufferedReader br;
+   String clientInput, command, line, tempLine;
+   
+   public MyThread(Socket s, int o){
+      this.connectionSocket = s;
+      this.choice = 0;
+      this.tempLine = null;
+   }
+   
+   public void run(){   
+      
+      try{
+         PrintWriter outputStream = new PrintWriter(connectionSocket.getOutputStream(), true);
+         
+         switch(choice){
+
             //Current Date and Time
             case 1:
 					run = Runtime.getRuntime();
@@ -147,20 +182,10 @@ class Server
 					tempLine = "";
 					break;
          	
-            case 7:
-            
-                  connectionSocket.close();
-                  welcomeSocket.close();
-                  inputStream.close();
-                  outputStream.close();
-
-
-               exitFlag = true;
-               break;
-         	
             default:
                break;           
          }
-      }  
+      } catch(IOException e){
+      } 
    }
 } 
