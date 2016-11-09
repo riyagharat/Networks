@@ -74,7 +74,7 @@ class Client
             		|| choice.equals("5") || choice.equals("6")){
                   
                   threadTime time = new threadTime(num);
-   	            	ClientThreads thread[] = new ClientThreads[75];
+   	            ClientThreads thread[] = new ClientThreads[num];
    	            	
    	   				for(int i = 0; i < num; i++) {
      	   					// Creates a new thread
@@ -92,9 +92,9 @@ class Client
    	                  if(num == 1){
      	                     System.out.println(thread[i].getResults());
    	                  }
-   	   					if ( (counter % 5 == 0) || (counter == 1) ) {
+   	   					if ((counter % 5 == 0) || (counter == 1) ) {
    	   						avgTime = time.getAverage(counter); 
-                           if (check){   
+                          if (check){   //what is this for?
                               System.out.println(OUTPUT);
                               check = false;
                            }
@@ -111,10 +111,11 @@ class Client
                System.out.println("Invalid Input");
             }
          }
+         clientSocket.close();
          outputStream.close();
          inputStream.close();
-         
-         clientSocket.close();
+         numberOfThreads.close();
+         userInput.close();
       }
       else
       {
@@ -153,7 +154,7 @@ class ClientThreads extends Thread {
 		
 	try {
 			String allResults = inputStream.readLine();
-         Client.OUTPUT = allResults;
+         Client.OUTPUT = allResults;//diff
 		   endTime = System.currentTimeMillis();
 			totalTime = endTime - startTime;
 			time.add(totalTime);
