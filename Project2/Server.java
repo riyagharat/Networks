@@ -55,7 +55,7 @@ class Server
                break;
                
             default:    
-                  System.out.println("E2");
+                  
                  MyThread thread = new MyThread(connectionSocket, choice);
                  thread.start();
                  
@@ -78,14 +78,14 @@ class MyThread extends Thread{
       this.connectionSocket = s;
       this.choice = choice;
       this.tempLine = null;
-          System.out.println("E3");
+         
    }
    
    public void run(){   
       
       try{
          PrintWriter outputStream = new PrintWriter(connectionSocket.getOutputStream(), true);
-             System.out.println("E4");
+           
          switch(choice){
 
             //Current Date and Time
@@ -98,7 +98,7 @@ class MyThread extends Thread{
 					tempLine = br.readLine();
 					outputStream.println(tempLine);
                System.out.println("Server processing Date/Time");
-                   System.out.println("E5");
+                
                
                tempLine = "";
                
