@@ -74,7 +74,7 @@ class Client
             		|| choice.equals("5") || choice.equals("6")){
                   
                   threadTime time = new threadTime(num);
-   	            ClientThreads thread[] = new ClientThreads[num];
+   	            ClientThreads thread[] = new ClientThreads[num];//CHANGE TO 75 to see if times change
    	            	
    	   				for(int i = 0; i < num; i++) {
      	   					// Creates a new thread
